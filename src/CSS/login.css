@@ -1,0 +1,17 @@
+.login_button_container{
+    margin-top: 1rem;
+    display: flex;
+    width: 20rem;
+    justify-content: space-between;
+}
+
+.login_link_container{
+    display: flex;
+    margin-top: 10px;
+}
+
+.login_link{
+    cursor: pointer;
+    color: darkblue;
+    text-decoration: underline;
+}
