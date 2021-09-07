@@ -15,3 +15,14 @@
     color: darkblue;
     text-decoration: underline;
 }
+.error-message
+{
+    margin-top: 5px;
+    color: red;
+}
+.card {
+    width: 25rem;
+    height: fit-content;
+    margin: auto;
+    margin-top: 20px;
+}

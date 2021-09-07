@@ -1,35 +1,56 @@
+import '../CSS/login.css'
+
 import { auth } from '../firebase'
 import Button from 'react-bootstrap/Button'
-import { verifyEmail } from '../auth';
+import { logout, verifyEmail } from '../auth';
+import { NavBar } from './navbar';
 import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router';
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 
 
 export const DashBoard = () => {
+    const [emailVerified, setEmailVerified] = useState(true);
 
-    const handleClick = (event: any) => {
+    const history= useHistory();
+    useEffect(() => {
+        auth.onAuthStateChanged(
+            function(user) {
+                if(user){
+                    setEmailVerified(user.emailVerified);
+                } else {
+                    history.push('/login');
+                }
+            }
+          ); 
+    },[])
+    const handleVerify = (event: any) => {
         event.preventDefault();
         verifyEmail();
     }
-
-    if(!auth.currentUser){
-        return(
-            <Redirect to='/login'></Redirect>
-        )
-    }
+    console.log('currentUser',auth.currentUser);
     
-    if(auth.currentUser?.emailVerified){        
+    if(emailVerified){        
         return(
-            <h1>Welcome</h1>
+            <>
+                <NavBar/>
+            </>
         );       
     }
 
     else{
         return(
             <>
-                <h1>Verify Email First</h1>
-                <Button variant='secondary' onClick={(e) =>handleClick(e)}>
-                    verify Email
-                </Button>
+                <div className='card border-4 border-dark'>
+                    <div className='card-body '>
+                    <p>Your Email is not verified, please verify your email first!</p>
+                    <Button variant='secondary' onClick={(e) =>handleVerify(e)}>
+                        verify Email
+                    </Button>
+                    </div>
+                </div>
             </>
             
         );
