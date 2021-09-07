@@ -16,7 +16,7 @@ const Signup = () =>{
   const [role, setRole] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  let history= useHistory();
+  let history = useHistory();
 
   const register = async(event: any) => {
     event.preventDefault();
@@ -45,8 +45,8 @@ const Signup = () =>{
     else if(result.errorCode){
       setLoading(false);
       switch(result.errorCode){
-        case 'auth/email-already-in-use' : setError('Email id already exist! please Login'); break;
-        default : setError('SignUp failed'); break;
+        case 'auth/email-already-in-use': setError('Email id already exist! please Login'); break;
+        default: setError('SignUp failed'); break;
       }
       
     }
@@ -61,7 +61,7 @@ const Signup = () =>{
     <>
      <div className='card border-4 border-dark'>
         <div className='card-body'>
-          <Form onSubmit= {(e) => register(e)}>
+          <Form onSubmit={(e) => register(e)}>
             <Form.Group className='mb-3' >
               <Form.Label>Enter Full name:</Form.Label>
               <Form.Control type='text' value={name} placeholder='Enter name' required
@@ -98,7 +98,7 @@ const Signup = () =>{
               placeholder='Confirm Password' onChange={(e) => setConfirmPassword(e.target.value)}/>
             </Form.Group>
 
-            <Button className="btn btn-dark" type='submit'>
+            <Button className='btn btn-dark' type='submit'>
               Sign-up
             </Button>
           </Form>
@@ -108,12 +108,11 @@ const Signup = () =>{
 
           <div className='login_link_container'>
             <p>If you already have an account, please &nbsp;</p>
-            <p className='login_link' onClick= {(e) => login(e)}> Login</p>
+            <p className='login_link' onClick={(e) => login(e)}> Login</p>
           </div>
         </div>  
       </div>
     </>
-
   );
 }
 

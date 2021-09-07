@@ -12,7 +12,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    let history= useHistory();
+    let history = useHistory();
 
     const signIn = async(event: any) => {
         event.preventDefault();
@@ -33,7 +33,7 @@ const Login = () => {
         }
     };
 
-    const handleReset =(event: any) => {
+    const handleReset = (event: any) => {
         event.preventDefault();
         history.push('/passwordreset');
     }
@@ -41,41 +41,42 @@ const Login = () => {
     const signup = (event: any) => {
         event.preventDefault();
         history.push('/signup');
-      } 
+    } 
     
     return (
     <>
         <div className='card border-4 border-dark'>
             <div className='card-body'>
-            <Form onSubmit= {(e) => signIn(e)}>
-            <Form.Group className='mb-3' controlId='formBasicEmail'>
-            <Form.Label>Enter email address:</Form.Label>
-            <Form.Control type='email' value={email} placeholder='Enter email' required
-                onChange={(e) => {setEmail(e.target.value)}} />
-            </Form.Group>
+                <Form onSubmit={(e) => signIn(e)}>
+                    <Form.Group className='mb-3' controlId='formBasicEmail'>
+                    <Form.Label>Enter email address:</Form.Label>
+                    <Form.Control type='email' value={email} placeholder='Enter email' required
+                        onChange={(e) => {setEmail(e.target.value)}} />
+                    </Form.Group>
 
-            <Form.Group className='mb-3' controlId='formBasicPassword' >
-            <Form.Label>Enter password:</Form.Label>
-            <Form.Control type='password' value={password} placeholder='Password' required onChange={(e) => setPassword(e.target.value)}/>
-            </Form.Group>
-            <div className= 'login_link'>
-                <p onClick={(e) => handleReset(e)}>
-                    Forgot Password?
-                </p>
-            </div>    
-            <Button className='btn btn-dark' type='submit' >
-            Login
-            </Button>
-        </Form>
-        {loading && <div className='spinner-border text-secondary m-3' role='status'/>}
-        {error && <p className='error-message mt-2'>{error}</p>}
+                    <Form.Group className='mb-3' controlId='formBasicPassword' >
+                    <Form.Label>Enter password:</Form.Label>
+                    <Form.Control type='password' value={password} placeholder='Password' required onChange={(e) => setPassword(e.target.value)}/>
+                    </Form.Group>
+                    <div className= 'login_link'>
+                        <p onClick={(e) => handleReset(e)}>
+                            Forgot Password?
+                        </p>
+                    </div>    
+                    <Button className='btn btn-dark' type='submit' >
+                    Login
+                    </Button>
+                </Form>
+                
+                {loading && <div className='spinner-border text-secondary m-3' role='status'/>}
+                {error && <p className='error-message mt-2'>{error}</p>}
 
-        <div className='login_link_container'>
-            <p>New User? please&nbsp;</p>
-            <p className='login_link' onClick= {(e) => signup(e)}>SignUp</p>
+                <div className='login_link_container'>
+                    <p>New User? Please&nbsp;</p>
+                    <p className='login_link' onClick={(e) => signup(e)}>signUp</p>
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
     </>
     );
 }

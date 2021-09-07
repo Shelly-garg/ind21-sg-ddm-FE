@@ -3,8 +3,8 @@ import '../CSS/login.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
 import { PasswordReset } from '../auth';
-import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useState } from 'react';
 
 
 export const ResetPassword = () => {
@@ -30,7 +30,7 @@ export const ResetPassword = () => {
             setLoading(false);
             setIsSuccess(false);
             switch(result.errorCode){
-                case 'auth/user-not-found' : setError('Email Id is not registered!'); break;
+                case 'auth/user-not-found': setError('Email Id is not registered!'); break;
                 default: setError(result.errorMessage);
             }
             
@@ -40,7 +40,6 @@ export const ResetPassword = () => {
     const handleLogin = async(event: any) => {
         event.preventDefault();
         history.push('/login');
-
     }
     return (
         <div className='card border-4 border-dark'>
@@ -52,7 +51,7 @@ export const ResetPassword = () => {
                         onChange={(e) => {setEmail(e.target.value)}} />
                     </Form.Group>
 
-                    <Button className="btn btn-dark" type='submit'>
+                    <Button className='btn btn-dark' type='submit'>
                         Send ResetPassword Email.
                     </Button>
                 </Form>

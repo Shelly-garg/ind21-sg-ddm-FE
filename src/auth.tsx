@@ -1,14 +1,14 @@
+import { auth, db } from './firebase';
+import { collection, addDoc } from 'firebase/firestore';
 import { 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword, 
   sendPasswordResetEmail,
   sendEmailVerification } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore'; 
-import { auth, db } from './firebase';
 
 
 export const createUser = async(email:string, password:string, name:string, role:string) => {
-  let result= await createUserWithEmailAndPassword(auth, email, password)
+  let result = await createUserWithEmailAndPassword(auth, email, password)
   .then( async(userCredential) => {
     const user = userCredential.user;
     try {
@@ -44,7 +44,6 @@ export const createUser = async(email:string, password:string, name:string, role
   return result;
 }
 
-
 export const signInUser = async(email: string, password: string) => {
   let result;
   result = await signInWithEmailAndPassword(auth, email, password)
@@ -67,7 +66,6 @@ export const signInUser = async(email: string, password: string) => {
   });
   return result;
 }
-
 
 export const PasswordReset = async(email: string) => {
   return await sendPasswordResetEmail(auth, email)
@@ -93,7 +91,6 @@ export const verifyEmail = () => {
   if(auth.currentUser){
     sendEmailVerification(auth.currentUser)
     .then(() => {
-      console.log("email sent successfully")
     });
   }
 }
