@@ -1,8 +1,7 @@
-import '../CSS/login.css'
-
+import '../../CSS/login.css'
 
 import Button from 'react-bootstrap/Button';
-import { createUser }  from '../auth';
+import { createUser }  from '../../auth';
 import Form from 'react-bootstrap/Form'
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';

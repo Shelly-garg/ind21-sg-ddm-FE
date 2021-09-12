@@ -1,8 +1,8 @@
-import '../CSS/login.css'
+import '../../CSS/login.css'
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
-import { PasswordReset } from '../auth';
+import { PasswordReset } from '../../auth';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -12,9 +12,9 @@ export const ResetPassword = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const history= useHistory();
+    const history = useHistory();
 
-    const handleSubmit = async(event : any) => {
+    const handleSubmit = async(event : React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setIsSuccess(false);
         setError('');
@@ -37,7 +37,7 @@ export const ResetPassword = () => {
         }
     }
 
-    const handleLogin = async(event: any) => {
+    const handleLogin = async(event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
         event.preventDefault();
         history.push('/login');
     }

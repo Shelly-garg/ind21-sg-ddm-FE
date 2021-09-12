@@ -1,16 +1,22 @@
-import '../CSS/login.css'
+import '../../CSS/login.css'
 
-import { auth } from '../firebase'
+import { auth } from '../../firebase'
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
-import { logout, verifyEmail } from '../auth';
-import { NavBar } from './navbar';
-import { useHistory } from 'react-router';
+import { getUserRole } from '../../services/RoleStorage';
+import { ItemRequest } from './itemRequest';
+import { MarketPlace } from './MarketPlace';
+import { NavBar } from '../navbar';
+import { RequestInfo } from './requestInfo';
+import { SendInvite } from './sendInvite';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { verifyEmail } from '../../auth';
 
 
 export const DashBoard = () => {
     const [emailVerified, setEmailVerified] = useState(true);
-
+    const userRole = getUserRole();
     const history = useHistory();
     useEffect(() => {
         auth.onAuthStateChanged(
@@ -27,12 +33,20 @@ export const DashBoard = () => {
         event.preventDefault();
         verifyEmail();
     }
-    console.log('currentUser',auth.currentUser);
     
     if(emailVerified){        
         return(
             <>
+            <BrowserRouter>
                 <NavBar/>
+                <Switch>
+                <Route exact path='/postrequest' component={ItemRequest}></Route>
+                <Route exact path='/market' component={MarketPlace}></Route>
+                <Route exact path='/request/:id' component={RequestInfo}></Route>
+                <Route exact path='/invite' component={SendInvite}></Route>
+                </Switch>
+            </BrowserRouter>
+            <h1>welcome</h1>
             </>
         );       
     }

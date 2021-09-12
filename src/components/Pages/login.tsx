@@ -1,8 +1,8 @@
-import '../CSS/login.css'
+import '../../CSS/login.css'
 
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form'
-import { signInUser }  from '../auth';
+import { signInUser }  from '../../auth';
 import { useHistory } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -14,7 +14,7 @@ const Login = () => {
     const [error, setError] = useState('');
     let history = useHistory();
 
-    const signIn = async(event: any) => {
+    const signIn = async(event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setError('');
         setLoading(true);
@@ -33,12 +33,12 @@ const Login = () => {
         }
     };
 
-    const handleReset = (event: any) => {
+    const handleReset = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
         event.preventDefault();
         history.push('/passwordreset');
     }
 
-    const signup = (event: any) => {
+    const signup = (event: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
         event.preventDefault();
         history.push('/signup');
     } 
@@ -72,7 +72,7 @@ const Login = () => {
                 {error && <p className='error-message mt-2'>{error}</p>}
 
                 <div className='login_link_container'>
-                    <p>New User? Please&nbsp;</p>
+                    <p>New User? Please&nbspany;</p>
                     <p className='login_link' onClick={(e) => signup(e)}>signUp</p>
                 </div>
             </div>
